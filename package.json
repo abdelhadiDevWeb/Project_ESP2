@@ -1,0 +1,23 @@
+{
+  "name": "projectesp2",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookies": "^0.9.1",
+    "cors": "^2.8.5",
+    "helmet": "^8.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "typeorm": "^0.3.22"
+  }
+}
