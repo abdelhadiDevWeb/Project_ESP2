@@ -60,11 +60,11 @@ wss.on("connection", (ws: WebSocket) => {
     try {
       message = JSON.parse(str);
     } catch (e) {
-      console.error("❌ Invalid JSON from robot:", str);
+      console.error(" Invalid JSON from robot:", str);
       return;
     }
 
-    console.log("✅ Received from robot:", message);
+    console.log(" Received from robot:", message);
 
     const check = await ropotRepo.findOne({ where: { id: message.robot_id } });
 
@@ -79,17 +79,18 @@ wss.on("connection", (ws: WebSocket) => {
         }
       );
     } else {
-      await ropotRepo.create({
-        name: `robot ${message.macAdr}`,
-        location: [message.x, message.y],
-        stausWork: message.stausWork,
-        statusSante: message.statusSante,
-        finich: message.finich,
-        start: message.start,
-      });
+     const creatrOne = await ropotRepo.create({
+       name: `robot ${message.macAdr}`,
+       location: [message.x, message.y],
+       stausWork: message.stausWork,
+       statusSante: message.statusSante,
+       finich: message.finich,
+       start: message.start,
+     });
+      await ropotRepo.save(creatrOne)
     }
 
-    // 🔁 Send data to all connected clients (frontend)
+
     wss.clients.forEach((client: any) => {
       if (client !== ws && client.readyState === WebSocket.OPEN) {
         client.send(`getDataFromRobot: ${JSON.stringify(message)}`);

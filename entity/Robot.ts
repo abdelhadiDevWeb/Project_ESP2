@@ -16,7 +16,6 @@ export class Robot extends BaseEntity {
   @Column({ type: "boolean", default: true })
   statusSante!: boolean;
 
- 
 
   @Column({ type: "text", array: true })
   location!: string[];

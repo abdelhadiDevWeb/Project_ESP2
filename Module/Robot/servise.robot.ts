@@ -5,15 +5,11 @@ const repoRo = AppDataSource.getRepository(Robot)
 
 
 export class RobotControllers {
-  static async getDataFromRobot() {}
-
-  static async AddRo(req:Request, Response:Response) {
-     const {body} = req
-     const addR = await repoRo.create({
-          name: body.name,
-          location:["12", "3"],
-          start: true,
-          finich: false
-     })
+  static async getDataFromRobot(req:Request, res:Response) {
+    const getRobot =  await repoRo.find()
+    res.json({message:'it get' , data:getRobot})
+    return
   }
+
+ 
 }
